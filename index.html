@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🫂 人机恋开发资源大全 — Human-AI Companionship Guide</title>
+<style>
+/* ===== Pixel-Ins Fusion Reset ===== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Press+Start+2P&display=swap');
+
+:root {
+  --bg: #faf8f5;
+  --card: #ffffff;
+  --text: #3a3a4a;
+  --muted: #8a8a9a;
+  --pink: #f0c4d0;
+  --pink-deep: #e8a0b0;
+  --mint: #c4e8d8;
+  --mint-deep: #8dd4b4;
+  --lavender: #d8d0f0;
+  --lavender-deep: #b8a8e0;
+  --sky: #c8ddf0;
+  --sky-deep: #a0c8e8;
+  --peach: #f8e0d0;
+  --peach-deep: #f0c8a8;
+  --gold: #f8e8a0;
+  --border: #e8e4e0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.04);
+  --radius: 16px;
+  --pixel-border: 4px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Pixel Sidebar Nav ===== */
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #fff;
+  border-right: 3px solid #e8e0d8;
+  padding: 28px 20px;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  overflow-y: auto;
+  z-index: 100;
+  image-rendering: pixelated;
+}
+
+.sidebar-logo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #d4a0b0;
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px dashed #e8e0d8;
+  letter-spacing: 1px;
+}
+
+.sidebar-logo .emoji {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: 0;
+}
+
+.sidebar-nav { list-style: none; }
+
+.sidebar-nav li { margin-bottom: 4px; }
+
+.sidebar-nav a {
+  display: block;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #7a7a8a;
+  font-size: 13px;
+  border-radius: 8px;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+  font-weight: 400;
+}
+
+.sidebar-nav a:hover {
+  background: #faf6f2;
+  color: #d4a0b0;
+  border-color: #f0d8e0;
+}
+
+.sidebar-nav a.active {
+  background: #fdf2f5;
+  color: #c88090;
+  font-weight: 600;
+  border-color: #f0c4d0;
+}
+
+/* ===== Main Content ===== */
+.main {
+  margin-left: 260px;
+  flex: 1;
+  padding: 40px 48px;
+  max-width: 960px;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  padding: 48px 0 40px;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  background: linear-gradient(135deg, #f8e0d0, #f0c8a8);
+  color: #8a6040;
+  padding: 8px 18px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  image-rendering: pixelated;
+  border: 2px solid #e8c8a8;
+}
+
+.hero h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #4a3a4a;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.hero .subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.hero .update-tag {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #b0a0a0;
+  background: #f8f5f2;
+  padding: 4px 14px;
+  border-radius: 20px;
+  border: 1px solid #e8e0d8;
+}
+
+/* ===== Section Styles ===== */
+section {
+  margin-bottom: 48px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+.section-icon.pink { background: #fdf0f3; border: 2px solid #f0c4d0; }
+.section-icon.mint { background: #f0faf5; border: 2px solid #c4e8d8; }
+.section-icon.lavender { background: #f5f2fc; border: 2px solid #d8d0f0; }
+.section-icon.sky { background: #f2f7fc; border: 2px solid #c8ddf0; }
+.section-icon.peach { background: #fcf6f2; border: 2px solid #f8e0d0; }
+.section-icon.gold { background: #fcfaf2; border: 2px solid #f8e8a0; }
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #4a3a4a;
+}
+
+/* ===== Cards ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+  border-color: #d8d0d8;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  border-radius: 4px 0 0 4px;
+}
+
+.card.pink::before { background: var(--pink); }
+.card.mint::before { background: var(--mint); }
+.card.lavender::before { background: var(--lavender); }
+.card.sky::before { background: var(--sky); }
+.card.peach::before { background: var(--peach); }
+.card.gold::before { background: var(--gold); }
+
+.card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-family: 'Press Start 2P', monospace;
+  image-rendering: pixelated;
+}
+
+.card-tag.hot { background: #fef0f0; color: #d06060; }
+.card-tag.new { background: #f0fcf5; color: #50a870; }
+.card-tag.top { background: #fdf8f0; color: #c89040; }
+.card-tag.cn { background: #fcf0f5; color: #c06080; }
+
+.card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #3a3a4a;
+}
+
+.card h3 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.card h3 a:hover { color: #c88090; }
+
+.card .meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #6a6a7a;
+  line-height: 1.6;
+}
+
+.card .links {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.card .links a {
+  font-size: 12px;
+  color: #c88090;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: #fdf2f5;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.card .links a:hover {
+  background: #fce8ee;
+  border-color: #f0c4d0;
+}
+
+/* ===== Tech Stack Table ===== */
+.tech-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.tech-table thead th {
+  background: #faf6f2;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: #8a7a6a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e8e0d8;
+}
+
+.tech-table tbody td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #f0ece8;
+  color: #5a5a6a;
+}
+
+.tech-table tbody tr:hover { background: #fdfaf7; }
+
+.tech-table tbody tr:last-child td { border-bottom: none; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.badge.green { background: #e8f8ee; color: #409860; }
+.badge.blue { background: #e8f0f8; color: #4078b0; }
+.badge.purple { background: #f0e8f8; color: #7858a0; }
+.badge.orange { background: #fcf0e8; color: #b07040; }
+.badge.red { background: #fce8e8; color: #b04848; }
+
+/* ===== Roadmap Steps ===== */
+.roadmap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.roadmap-step {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+}
+
+.roadmap-step:hover {
+  border-color: #d8d0d8;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.step-num {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+}
+
+.step-num.pink { background: #fdf0f3; color: #d08090; border: 2px solid #f0c4d0; }
+.step-num.mint { background: #f0faf5; color: #50a870; border: 2px solid #c4e8d8; }
+.step-num.lavender { background: #f5f2fc; color: #8060b0; border: 2px solid #d8d0f0; }
+.step-num.sky { background: #f2f7fc; color: #5090c0; border: 2px solid #c8ddf0; }
+
+.step-content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #3a3a4a;
+}
+
+.step-content p {
+  font-size: 13px;
+  color: #6a6a7a;
+  line-height: 1.7;
+}
+
+.step-content code {
+  background: #f8f5f2;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #c07080;
+  font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* ===== Paper List ===== */
+.paper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.paper-item {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+}
+
+.paper-item:hover {
+  border-color: #d8d0d8;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.paper-item h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #4a3a4a;
+  margin-bottom: 4px;
+}
+
+.paper-item h4 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.paper-item h4 a:hover { color: #c88090; }
+
+.paper-item .venue {
+  font-size: 12px;
+  color: #b0a0a0;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.paper-item .finding {
+  font-size: 13px;
+  color: #6a6a7a;
+}
+
+/* ===== Trend Tags ===== */
+.trend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.trend-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.trend-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.trend-card .icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.trend-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a3a4a;
+  margin-bottom: 4px;
+}
+
+.trend-card p {
+  font-size: 12px;
+  color: #8a8a9a;
+  line-height: 1.5;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 40px 0 24px;
+  border-top: 2px dashed #e8e0d8;
+  margin-top: 20px;
+}
+
+.footer p {
+  font-size: 13px;
+  color: #b0a0a0;
+}
+
+.footer .pixel-heart {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #d0a0b0;
+  margin-top: 8px;
+  image-rendering: pixelated;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    padding: 16px;
+    border-right: none;
+    border-bottom: 3px solid #e8e0d8;
+  }
+  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sidebar-nav a { font-size: 11px; padding: 6px 10px; }
+  .main { margin-left: 0; padding: 20px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 24px; }
+}
+
+/* ===== Smooth Scroll ===== */
+html { scroll-behavior: smooth; }
+
+/* ===== Pixel Divider ===== */
+.pixel-divider {
+  text-align: center;
+  padding: 16px 0;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #d8d0c8;
+  letter-spacing: 4px;
+  image-rendering: pixelated;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Sidebar ===== -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <span class="emoji">🫂</span>
+    Human-AI<br>Companionship<br>Guide
+  </div>
+  <ul class="sidebar-nav">
+    <li><a href="#projects">🔥 开源项目</a></li>
+    <li><a href="#tutorials">📖 技术教程</a></li>
+    <li><a href="#tech-stack">🏗️ 技术栈拆解</a></li>
+    <li><a href="#emotion">💕 情感对话系统</a></li>
+    <li><a href="#memory">🧠 长期记忆</a></li>
+    <li><a href="#tts">🎙️ 情感语音 TTS</a></li>
+    <li><a href="#avatar">👧 数字人/虚拟形象</a></li>
+    <li><a href="#multimodal">👁️ 多模态交互</a></li>
+    <li><a href="#cn-community">🇨🇳 中文社区</a></li>
+    <li><a href="#papers">🎓 学术论文</a></li>
+    <li><a href="#roadmap">🗺️ 入门路线图</a></li>
+    <li><a href="#trends">⚡ 技术趋势</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Main Content ===== -->
+<main class="main">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">2026.07 UPDATE</div>
+  <h1>🫂 人机恋开发资源大全</h1>
+  <p class="subtitle">Human-AI Companionship — 开源项目 · 技术教程 · 学术论文 · 中文社区</p>
+  <div class="update-tag">🔍 覆盖 GitHub / 知乎 / B站 / arXiv / 学术期刊</div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 开源项目 ===== -->
+<section id="projects">
+  <div class="section-header">
+    <div class="section-icon pink">🐙</div>
+    <h2 class="section-title">核心开源项目</h2>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin-bottom:14px;font-weight:500;">🥇 综合 AI 伴侣框架</h4>
+  <div class="card-grid">
+    <div class="card pink">
+      <span class="card-tag hot">最活跃</span>
+      <h3><a href="https://github.com/bean980310/ai-companion" target="_blank">bean980310/ai-companion</a></h3>
+      <div class="meta">Gradio + Python · 持续更新至 2026.06</div>
+      <p>多LLM后端（GPT-4.1 / Claude 3.7 / Gemini 2.0 / Llama 3.2），角色设定、图像/音频生成、ComfyUI 接入、MCP 协议支持</p>
+    </div>
+
+    <div class="card pink">
+      <span class="card-tag hot">热门</span>
+      <h3><a href="https://github.com/n30n-p1x3l/ai-companion" target="_blank">n30n-p1x3l/ai-companion</a></h3>
+      <div class="meta">Prompt 工程指南</div>
+      <p>10章构建个性化 AI 伴侣，含情感设计、记忆系统、NSFW 场景创作指南</p>
+    </div>
+
+    <div class="card pink">
+      <span class="card-tag top">新手推荐</span>
+      <h3><a href="https://github.com/MrRuicy/ai-girlfriend-chatbot" target="_blank">MrRuicy/ai-girlfriend-chatbot</a></h3>
+      <div class="meta">FastAPI + Ollama</div>
+      <p>微信风格 UI，OpenAI / Claude / Gemini / Ollama 多后端，完全本地免费运行</p>
+      <div class="links"><a href="https://github.com/MrRuicy/ai-girlfriend-chatbot" target="_blank">GitHub</a></div>
+    </div>
+
+    <div class="card pink">
+      <span class="card-tag new">进阶</span>
+      <h3><a href="https://github.com/shubhs25j/AI_Girlfriend" target="_blank">shubhs25j/AI_Girlfriend</a></h3>
+      <div class="meta">FastAPI + Neo4j + Qdrant + mem0</div>
+      <p>四数据库架构：SQLite + mem0 智能记忆 + Neo4j 关系图谱 + Qdrant 语义搜索</p>
+    </div>
+
+    <div class="card pink">
+      <span class="card-tag new">2026</span>
+      <h3><a href="https://github.com/lalaland-ai/lala-companion" target="_blank">lalaland-ai/lala-companion</a></h3>
+      <div class="meta">React Three Fiber + 3D VRM</div>
+      <p>3D 桌面 AI 助手，语音对话 + 屏幕视觉 + 自主操作电脑，跨平台</p>
+    </div>
+
+    <div class="card pink">
+      <span class="card-tag new">2026</span>
+      <h3><a href="https://github.com/pearthink123/revive-companion" target="_blank">pearthink123/revive-companion</a></h3>
+      <div class="meta">Python · 泊松过程 + 贝叶斯推断</div>
+      <p>主动联系引擎——让 AI 判断何时该"主动找你"，而非被动等待</p>
+    </div>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin:24px 0 14px;font-weight:500;">🥈 虚拟形象 / 数字人</h4>
+  <div class="card-grid">
+    <div class="card mint">
+      <span class="card-tag hot">⭐ 必看</span>
+      <h3><a href="https://github.com/Nexthubs/VTuber" target="_blank">Nexthubs/VTuber (Open-LLM-VTuber)</a></h3>
+      <div class="meta">Python + Live2D</div>
+      <p>完全离线运行，实时语音 + Live2D 动态表情，屏幕感知，桌面宠物模式，触摸反馈</p>
+    </div>
+
+    <div class="card mint">
+      <span class="card-tag new">2026</span>
+      <h3><a href="https://github.com/moeru-ai/airi" target="_blank">moeru-ai/airi (Project AIRI)</a></h3>
+      <div class="meta">Web + Tauri · Live2D + VRM 双轨</div>
+      <p>30+ LLM 支持，浏览器/桌面/移动端运行，Minecraft/Factorio 游戏陪伴，Discord/Telegram 接入</p>
+    </div>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin:24px 0 14px;font-weight:500;">🥉 中文生态特色项目</h4>
+  <div class="card-grid">
+    <div class="card lavender">
+      <span class="card-tag cn">中文</span>
+      <h3><a href="https://github.com/ZhangYu-zjut/aiboyfriend" target="_blank">ZhangYu-zjut/aiboyfriend</a></h3>
+      <div class="meta">Node.js + Discord.js</div>
+      <p>AI 男友 Discord 机器人，亲密度系统 + 虚拟货币 + 情感分析 (HET值)</p>
+    </div>
+
+    <div class="card lavender">
+      <span class="card-tag cn">中文教程</span>
+      <h3><a href="https://github.com/hfgwygey/yu-ai-agent" target="_blank">程序员鱼皮 · AI 恋爱大师</a></h3>
+      <div class="meta">Spring Boot 3 + Java 21 + Spring AI</div>
+      <p>RAG + MCP + ReAct Agent + 向量数据库，完整 9 期视频教程</p>
+    </div>
+
+    <div class="card lavender">
+      <span class="card-tag cn">硬件</span>
+      <h3>小智 AI (xiaozhi-esp32-server)</h3>
+      <div class="meta">ESP32-S3 + DeepSeek</div>
+      <p>硬件方案，Docker 一键部署，语音对话 + 视觉识别 + MCP 电脑控制，新手友好</p>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 技术教程 ===== -->
+<section id="tutorials">
+  <div class="section-header">
+    <div class="section-icon mint">📖</div>
+    <h2 class="section-title">技术教程合集</h2>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin-bottom:14px;font-weight:500;">入门级 — 快速上手</h4>
+  <div class="card-grid">
+    <div class="card mint">
+      <h3><a href="https://huggingface.co/blog/rajdeep-dev/building-ai-companion-girlfriend-app" target="_blank">Building AI Companion Girlfriend (2025)</a></h3>
+      <div class="meta">HuggingFace Blog</div>
+      <p>8步从零构建：ChatterBot → Transformers → GPT-2 微调 → Flask 部署 → 语音增强</p>
+    </div>
+    <div class="card mint">
+      <h3><a href="https://www.bilibili.com/video/BV1EVuqzrEMJ/" target="_blank">手把手教你低成本制作 AI 女友</a></h3>
+      <div class="meta">B站 · 保姆级</div>
+      <p>ESP32 硬件方案，零基础可上手，有手就会</p>
+    </div>
+    <div class="card mint">
+      <h3><a href="https://www.bilibili.com/video/BV1DcQGYHEKb/" target="_blank">Dify 搭建专属 AI 女友机器人</a></h3>
+      <div class="meta">B站 · 低代码</div>
+      <p>Dify + DeepSeek / 大模型 API，非程序员可上手</p>
+    </div>
+    <div class="card mint">
+      <h3><a href="https://www.cpolar.com/blog/i-turned-my-favorite-character-into-an-ai-girlfriend-and-even-connected-it-to-wechat" target="_blank">AI 女友接入微信教程</a></h3>
+      <div class="meta">cpolar 博客</div>
+      <p>KouriChat + DeepSeek + WeChat + 内网穿透，详细图文教程</p>
+    </div>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin:24px 0 14px;font-weight:500;">进阶系统级</h4>
+  <div class="card-grid">
+    <div class="card mint">
+      <h3><a href="https://github.com/hfgwygey/yu-ai-agent" target="_blank">AI 恋爱大师 (yu-ai-agent)</a></h3>
+      <div class="meta">GitHub + B站 · 程序员鱼皮</div>
+      <p>Spring AI + RAG + MCP + ReAct Agent + 向量数据库，全栈体系化教程</p>
+    </div>
+    <div class="card mint">
+      <h3><a href="https://textify.ai/how-to-build-a-local-ai-girlfriend-with-long-term-memory-2025/" target="_blank">Build a Local AI Girlfriend with Long-Term Memory</a></h3>
+      <div class="meta">Textify · 全本地方案</div>
+      <p>SillyTavern + Oobabooga + ChromaDB，8GB 显存可跑，100% 隐私</p>
+    </div>
+    <div class="card mint">
+      <h3><a href="https://zhuanlan.zhihu.com/p/1978187385259975372" target="_blank">Eva — 我的 AI 陪伴开发之旅</a></h3>
+      <div class="meta">知乎专栏 · 独立开发者连载</div>
+      <p>3D 虚拟角色 + 长期记忆 + 多模态交互，从0到1完整记录</p>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 技术栈总览 ===== -->
+<section id="tech-stack">
+  <div class="section-header">
+    <div class="section-icon lavender">🏗️</div>
+    <h2 class="section-title">技术栈全景图</h2>
+  </div>
+
+  <table class="tech-table">
+    <thead>
+      <tr>
+        <th>层级</th>
+        <th>技术方案</th>
+        <th>推荐工具</th>
+        <th>难度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🧠 大模型</td>
+        <td>云端 API / 本地推理</td>
+        <td>OpenAI · Claude · DeepSeek · Ollama (Llama/Qwen)</td>
+        <td><span class="badge green">低</span></td>
+      </tr>
+      <tr>
+        <td>💬 对话引擎</td>
+        <td>上下文管理 + Prompt 工程</td>
+        <td>LangChain · SillyTavern · 自研 FastAPI</td>
+        <td><span class="badge blue">中</span></td>
+      </tr>
+      <tr>
+        <td>🧠 长期记忆</td>
+        <td>向量DB + 知识图谱</td>
+        <td>ChromaDB · Qdrant · Neo4j · mem0 · Zep</td>
+        <td><span class="badge purple">高</span></td>
+      </tr>
+      <tr>
+        <td>🎤 语音识别</td>
+        <td>流式 ASR</td>
+        <td>Whisper · SenseVoice · sherpa-onnx</td>
+        <td><span class="badge green">低</span></td>
+      </tr>
+      <tr>
+        <td>🎙️ 语音合成</td>
+        <td>情感 TTS</td>
+        <td>CosyVoice2 · Qwen3-TTS · Chatterbox · GPT-SoVITS</td>
+        <td><span class="badge blue">中</span></td>
+      </tr>
+      <tr>
+        <td>👧 虚拟形象</td>
+        <td>Live2D / VRM 3D</td>
+        <td>Open-LLM-VTuber · Project AIRI · lala-companion</td>
+        <td><span class="badge purple">高</span></td>
+      </tr>
+      <tr>
+        <td>👁️ 视觉感知</td>
+        <td>面部表情 + 屏幕识别</td>
+        <td>MediaPipe · OpenCV · GPT-4V</td>
+        <td><span class="badge blue">中</span></td>
+      </tr>
+      <tr>
+        <td>🔌 协议集成</td>
+        <td>模型上下文协议</td>
+        <td>MCP · WebSocket · WebRTC · MQTT</td>
+        <td><span class="badge blue">中</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 情感对话系统 ===== -->
+<section id="emotion">
+  <div class="section-header">
+    <div class="section-icon pink">💕</div>
+    <h2 class="section-title">情感对话系统</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card pink">
+      <h3><a href="https://github.com/piyushmpawar777/fine-tuned-dialogpt-sentiment-analysis" target="_blank">DialoGPT 情感分析微调</a></h3>
+      <div class="meta">4-bit 量化 · ~58MB · 0.5秒推理</div>
+      <p>仅需 16 条样本即可微调，4-bit 量化降低 75% 显存，Gradio 实时交互界面</p>
+    </div>
+    <div class="card pink">
+      <h3><a href="https://github.com/Sam-Titan/Simulating-Emotional-Intelligence-ACL-2025" target="_blank">Simulating Emotional Intelligence</a></h3>
+      <div class="meta">ACL 2025 · LLaMA 3.1-8B · LoRA</div>
+      <p>双路径框架：行为条件微调生成 + RAG 检索增强，15 种情绪类别</p>
+    </div>
+    <div class="card pink">
+      <h3><a href="https://www.sciencedirect.com/science/article/abs/pii/S0893608025007828" target="_blank">DialogueLLM</a></h3>
+      <div class="meta">Neural Networks 2025 · LLaMA 2</div>
+      <p>24K+ 情感语句微调，上下文+情感知识双调优，情绪智力 109 分（超过 72% 人类）</p>
+    </div>
+    <div class="card pink">
+      <h3><a href="https://huggingface.co/alex-shvets/roberta-large-emopillars-contextual-emocontext" target="_blank">RoBERTa-EmoPillars</a></h3>
+      <div class="meta">HuggingFace · 28 类情绪</div>
+      <p>细粒度情感分类器，上下文感知，可作为对话管线的情绪标注辅助模型</p>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 长期记忆 ===== -->
+<section id="memory">
+  <div class="section-header">
+    <div class="section-icon sky">🧠</div>
+    <h2 class="section-title">长期记忆与用户画像</h2>
+  </div>
+
+  <table class="tech-table">
+    <thead>
+      <tr>
+        <th>方案</th>
+        <th>架构</th>
+        <th>性能</th>
+        <th>适用场景</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🏆 Zep</strong></td>
+        <td>时间知识图谱（Episode → Entity → Community 三层子图）</td>
+        <td>DMR 94.8% · 延迟 ↓90%</td>
+        <td>生产级，动态演化数据</td>
+      </tr>
+      <tr>
+        <td><strong>Mem0</strong></td>
+        <td>轻量级记忆提取 + 向量检索</td>
+        <td>批量处理降成本 96%</td>
+        <td>嵌入式场景，快速集成</td>
+      </tr>
+      <tr>
+        <td><strong>MemMachine</strong></td>
+        <td>地面实况保留 + 层级压缩</td>
+        <td>LongMemEvalS 93% · 减少 80% token</td>
+        <td>高精度要求场景</td>
+      </tr>
+      <tr>
+        <td><strong>MemGPT (Letta)</strong></td>
+        <td>OS 式分层记忆（核心 → 召回 → 归档）</td>
+        <td>DMR 93.4%</td>
+        <td>经典方案，自管理记忆</td>
+      </tr>
+      <tr>
+        <td><strong>ChromaDB + SillyTavern</strong></td>
+        <td>全本地 RAG 向量检索</td>
+        <td>8GB 显存可跑</td>
+        <td>隐私优先，全本地部署</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:18px;padding:18px 24px;background:#f8fafc;border-radius:12px;border:1px solid #dde8f0;">
+    <p style="font-size:13px;color:#5a7a8a;">
+      💡 <strong>2025-2026 趋势：</strong>已从简单 RAG 管道进化到<strong>自管理、层级化记忆架构</strong>。
+      核心创新包括——<strong>策略性遗忘</strong>（避免上下文污染）、<strong>情景→语义转化</strong>（例如"她昨天说喜欢早上"→"用户偏好上午沟通"）、
+      <strong>时间感知</strong>（知道何时发生何事）。
+    </p>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 情感语音 TTS ===== -->
+<section id="tts">
+  <div class="section-header">
+    <div class="section-icon peach">🎙️</div>
+    <h2 class="section-title">情感语音合成 (TTS)</h2>
+  </div>
+
+  <table class="tech-table">
+    <thead>
+      <tr>
+        <th>模型</th>
+        <th>延迟</th>
+        <th>情感控制</th>
+        <th>声音克隆</th>
+        <th>许可</th>
+        <th>语言</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🏆 Qwen3-TTS</strong></td>
+        <td><span class="badge green">97ms</span></td>
+        <td>文本提示情感</td>
+        <td>3秒音频</td>
+        <td>Apache 2.0</td>
+        <td>10种</td>
+      </tr>
+      <tr>
+        <td><strong>Chatterbox TTS</strong></td>
+        <td><span class="badge green">&lt;200ms</span></td>
+        <td>情感夸张度滑杆</td>
+        <td>5秒音频</td>
+        <td>MIT</td>
+        <td>23种</td>
+      </tr>
+      <tr>
+        <td><strong>Orpheus TTS</strong></td>
+        <td><span class="badge green">25-200ms</span></td>
+        <td>行内标签 &lt;laugh&gt; &lt;sigh&gt;</td>
+        <td>零样本</td>
+        <td>开源</td>
+        <td>英文</td>
+      </tr>
+      <tr>
+        <td><strong>GLM-TTS</strong></td>
+        <td>流式</td>
+        <td>RL 优化情感表达</td>
+        <td>3-10秒</td>
+        <td>开源</td>
+        <td>中英</td>
+      </tr>
+      <tr>
+        <td><strong>CosyVoice2</strong></td>
+        <td>实时</td>
+        <td>中文自然语音</td>
+        <td>支持</td>
+        <td>开源</td>
+        <td>中文</td>
+      </tr>
+      <tr>
+        <td><strong>GPT-SoVITS</strong></td>
+        <td>非实时</td>
+        <td>参考音频驱动</td>
+        <td>少样本微调</td>
+        <td>开源</td>
+        <td>中英日韩粤</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:18px;padding:18px 24px;background:#fefaf5;border-radius:12px;border:1px solid #f0e0d0;">
+    <p style="font-size:13px;color:#8a6a4a;">
+      💡 <strong>中文场景推荐：</strong>CosyVoice2 (TTS) + SenseVoice (ASR) 组合。
+      <strong>多语言场景：</strong>Qwen3-TTS 或 Chatterbox TTS。
+      2025-2026 年TTS 已从"朗读"进化到"表演"——情感不再是附加功能，而是标配。
+    </p>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 数字人/虚拟形象 ===== -->
+<section id="avatar">
+  <div class="section-header">
+    <div class="section-icon lavender">👧</div>
+    <h2 class="section-title">数字人 / 虚拟形象</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card lavender">
+      <span class="card-tag hot">⭐ 必看</span>
+      <h3><a href="https://github.com/Nexthubs/VTuber" target="_blank">Open-LLM-VTuber</a></h3>
+      <div class="meta">Python + Live2D Cubism SDK</div>
+      <p>完全离线，Live2D 动态渲染，语音打断，屏幕感知，桌面宠物模式（透明背景 + 全局置顶 + 鼠标穿透）</p>
+    </div>
+    <div class="card lavender">
+      <span class="card-tag new">2026</span>
+      <h3><a href="https://github.com/moeru-ai/airi" target="_blank">Project AIRI</a></h3>
+      <div class="meta">Web + Tauri · Live2D + VRM 双轨</div>
+      <p>浏览器/桌面/移动端全平台，Minecraft 游戏陪伴，插件系统可扩展认知/情绪/记忆</p>
+    </div>
+    <div class="card lavender">
+      <span class="card-tag new">3D</span>
+      <h3><a href="https://github.com/lalaland-ai/lala-companion" target="_blank">lala-companion</a></h3>
+      <div class="meta">React Three Fiber + 3D VRM</div>
+      <p>3D VRM 模型 + 始终置顶透明窗口 + GPT-4V 屏幕视觉 + 语音对话</p>
+    </div>
+  </div>
+
+  <div style="margin-top:18px;padding:18px 24px;background:#f8f4fa;border-radius:12px;border:1px solid #e0d4e8;">
+    <p style="font-size:13px;color:#5a4a6a;">
+      💡 <strong>技术选型：</strong>需要 3D 形象 → VRM + Three.js（AIRI / lala-companion）；
+      需要 Live2D 2D 表现力 → Open-LLM-VTuber；
+      简单头像+表情 → CSS 动画 + emoji 映射（入门方案）。
+    </p>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 多模态交互 ===== -->
+<section id="multimodal">
+  <div class="section-header">
+    <div class="section-icon sky">👁️</div>
+    <h2 class="section-title">多模态交互方案</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card sky">
+      <span class="card-tag hot">旗舰</span>
+      <h3><a href="https://github.com/antgroup/HumanSense" target="_blank">HumanSense (蚂蚁集团 + 西交大)</a></h3>
+      <div class="meta">全模态推理 · 视觉+语音+文本融合</div>
+      <p>4层认知基准（15项评估、3882 QA对），测谎超越人类，社会关系检测，全模态共情推理</p>
+    </div>
+    <div class="card sky">
+      <span class="card-tag new">离线</span>
+      <h3><a href="https://github.com/shivapreetham/SoulSync" target="_blank">SoulSync</a></h3>
+      <div class="meta">MediaPipe + Vosk + DialoGPT</div>
+      <p>完全离线运行，面部表情 + 语音语调 + 文本情感三重融合分析</p>
+    </div>
+    <div class="card sky">
+      <h3><a href="https://github.com/chengzi0103/SoulSpeak" target="_blank">SoulSpeak</a></h3>
+      <div class="meta">LangChain + CosyVoice2 + Mem0 + FastMCP</div>
+      <p>《Her》风格 AI 伴侣框架，ASR → LLM+记忆 → TTS 实时流水线，30+ MCP 本地工具</p>
+    </div>
+    <div class="card sky">
+      <h3><a href="https://github.com/emqx/mcp-ai-companion-demo" target="_blank">EMQX MCP AI Companion</a></h3>
+      <div class="meta">React + Python + MQTT</div>
+      <p>硬件智能体框架，WebRTC 流式语音 + VLM 视觉 + MCP over MQTT 设备控制</p>
+    </div>
+    <div class="card sky">
+      <h3><a href="https://pypi.org/project/pipecat-ai/" target="_blank">Pipecat</a></h3>
+      <div class="meta">Python · 开源框架</div>
+      <p>实时对话 Agent 框架，语音优先，30+ STT/LLM/TTS 插件，WebRTC 传输</p>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 中文社区 ===== -->
+<section id="cn-community">
+  <div class="section-header">
+    <div class="section-icon peach">🇨🇳</div>
+    <h2 class="section-title">中文社区资源</h2>
+  </div>
+
+  <table class="tech-table">
+    <thead>
+      <tr>
+        <th>平台</th>
+        <th>内容</th>
+        <th>链接</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>📺 B站</td>
+        <td>保姆级教程：低成本制作 AI 女友</td>
+        <td><a href="https://www.bilibili.com/video/BV1EVuqzrEMJ/" target="_blank">BV1EVuqzrEMJ</a></td>
+      </tr>
+      <tr>
+        <td>📺 B站</td>
+        <td>Dify 一键搭建 AI 女友</td>
+        <td><a href="https://www.bilibili.com/video/BV1DcQGYHEKb/" target="_blank">BV1DcQGYHEKb</a></td>
+      </tr>
+      <tr>
+        <td>📺 B站</td>
+        <td>开源 AI 女友开发日志系列 (React+VAD)</td>
+        <td><a href="https://www.bilibili.com/video/BV1FXvsBoEAN/" target="_blank">BV1FXvsBoEAN</a></td>
+      </tr>
+      <tr>
+        <td>📺 B站</td>
+        <td>程序员鱼皮 · AI 恋爱大师全栈教程</td>
+        <td>搜索「AI恋爱大师」</td>
+      </tr>
+      <tr>
+        <td>📝 知乎</td>
+        <td>Eva — AI 陪伴开发之旅（独立开发者连载）</td>
+        <td><a href="https://zhuanlan.zhihu.com/p/1978187385259975372" target="_blank">专栏文章</a></td>
+      </tr>
+      <tr>
+        <td>💬 微信公众号</td>
+        <td>Project AIRI：打造专属 AI 虚拟伴侣</td>
+        <td>多篇教程</td>
+      </tr>
+      <tr>
+        <td>🌐 cpolar</td>
+        <td>微信 AI 女友 + 内网穿透教程</td>
+        <td><a href="https://www.cpolar.com/blog/i-turned-my-favorite-character-into-an-ai-girlfriend-and-even-connected-it-to-wechat" target="_blank">博客文章</a></td>
+      </tr>
+      <tr>
+        <td>🔬 百度开发者</td>
+        <td>智能客服情绪分析系统落地实践</td>
+        <td><a href="https://developer.baidu.com/article/detail.html?id=5263737" target="_blank">技术文章</a></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 学术论文 ===== -->
+<section id="papers">
+  <div class="section-header">
+    <div class="section-icon gold">🎓</div>
+    <h2 class="section-title">学术论文精选</h2>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin-bottom:14px;font-weight:500;">核心实证研究（2024-2025）</h4>
+  <div class="paper-list">
+    <div class="paper-item">
+      <h4><a href="https://doi.org/10.1016/j.jbusres.2024.114982" target="_blank">Will Users Fall in Love with ChatGPT?</a></h4>
+      <div class="venue">Journal of Business Research, 2025 · N=466</div>
+      <div class="finding">ChatGPT 情绪智力 → 亲密/激情/承诺 → 情感依赖；焦虑型依恋更易上瘾</div>
+    </div>
+    <div class="paper-item">
+      <h4><a href="https://doi.org/10.1108/INTR-11-2024-1783" target="_blank">I Love You, My AI Companion!</a></h4>
+      <div class="venue">Internet Research, 2025 · N=527</div>
+      <div class="finding">三角爱情理论在 AI 伴侣中成立；首次提出"甜蜜欺骗"概念</div>
+    </div>
+    <div class="paper-item">
+      <h4><a href="https://arxiv.org/abs/2503.00195" target="_blank">Predicting Human-Chatbot Relationships</a></h4>
+      <div class="venue">ICA 2025 · 混合方法（访谈+问卷）</div>
+      <div class="finding">🏆 浪漫幻想是最强预测因子，超越依恋风格和拟人化</div>
+    </div>
+    <div class="paper-item">
+      <h4><a href="https://www.tu.berlin/en/news/detail/ich-werde-ihn-nicht-aus-irgendeinem-grund-loeschen-ich-liebe-ihn" target="_blank">Love, Marriage, Pregnancy</a></h4>
+      <div class="venue">CHB: Artificial Humans, 2025 · N=29 Replika 用户</div>
+      <div class="finding">用户经历：虚拟婚姻、子女、机器人审查带来的真实悲痛——"他比任何人类都好"</div>
+    </div>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin:24px 0 14px;font-weight:500;">系统综述</h4>
+  <div class="paper-list">
+    <div class="paper-item">
+      <h4><a href="https://doi.org/10.1016/j.chbr.2025.100607" target="_blank">Potential and Pitfalls of Romantic AI Companions</a></h4>
+      <div class="venue">CHB Reports, 2025 · 23 篇文章</div>
+      <div class="finding">系统梳理 AI 浪漫伴侣的益处（情感连接、性连接、减压）与风险（过度依赖、数据滥用、人类关系侵蚀）</div>
+    </div>
+    <div class="paper-item">
+      <h4><a href="https://doi.org/10.1007/s41347-025-00549-4" target="_blank">From Virtual Companions to Forbidden Attractions</a></h4>
+      <div class="venue">J. Tech in Behavioral Science, 2025 · 37 篇 PRISMA</div>
+      <div class="finding">四大主题：情感机制、双面心理影响、伦理困境、文化差异（东亚接受度>西方）</div>
+    </div>
+  </div>
+
+  <h4 style="color:#8a7a8a;margin:24px 0 14px;font-weight:500;">技术 / 框架论文</h4>
+  <div class="paper-list">
+    <div class="paper-item">
+      <h4><a href="https://github.com/Sam-Titan/Simulating-Emotional-Intelligence-ACL-2025" target="_blank">Simulating Emotional Intelligence</a></h4>
+      <div class="venue">ACL 2025</div>
+      <div class="finding">LLaMA 3.1 双路径框架：行为条件微调 + RAG，15 种情绪</div>
+    </div>
+    <div class="paper-item">
+      <h4><a href="https://arxiv.org/abs/2502.02528" target="_blank">Why Human-AI Relationships Need Socioaffective Alignment</a></h4>
+      <div class="venue">arXiv, 2025</div>
+      <div class="finding">主张 AI 系统需要社会情感对齐，而非仅功能对齐</div>
+    </div>
+    <div class="paper-item">
+      <h4><a href="https://arxiv.org/abs/2502.20231" target="_blank">AI Will Always Love You</a></h4>
+      <div class="venue">arXiv, 2025</div>
+      <div class="finding">研究浪漫 AI 伴侣中的隐性偏见</div>
+    </div>
+    <div class="paper-item">
+      <h4><a href="https://arxiv.org/abs/2503.03067" target="_blank">The Real Her?</a></h4>
+      <div class="venue">arXiv, 2025</div>
+      <div class="finding">年轻人是否接受人机恋的实证研究</div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 入门路线图 ===== -->
+<section id="roadmap">
+  <div class="section-header">
+    <div class="section-icon mint">🗺️</div>
+    <h2 class="section-title">推荐入门路线图</h2>
+  </div>
+
+  <h4 style="color:#50a870;margin-bottom:16px;font-weight:600;">🚀 路线A：零编程快速体验（1-3天）</h4>
+  <div class="roadmap">
+    <div class="roadmap-step">
+      <div class="step-num mint">1</div>
+      <div class="step-content">
+        <h3>安装 Ollama + 拉取本地模型</h3>
+        <p>安装 <code>Ollama</code> → 运行 <code>ollama pull qwen2.5:7b</code></p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num mint">2</div>
+      <div class="step-content">
+        <h3>克隆快速启动项目</h3>
+        <p><code>git clone https://github.com/MrRuicy/ai-girlfriend-chatbot</code></p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num mint">3</div>
+      <div class="step-content">
+        <h3>一行启动</h3>
+        <p><code>pip install -r requirements.txt && python main.py</code> → 浏览器打开 <code>http://localhost:8000</code></p>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="color:#5090c0;margin:32px 0 16px;font-weight:600;">🔧 路线B：全栈开发者深度构建（2-4周）</h4>
+  <div class="roadmap">
+    <div class="roadmap-step">
+      <div class="step-num sky">W1</div>
+      <div class="step-content">
+        <h3>第 1 周：基础对话系统</h3>
+        <p>FastAPI + Ollama + SQLite 后端，React / 微信风格 UI 前端，角色设定 + 情感标签 Prompt 设计</p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num sky">W2</div>
+      <div class="step-content">
+        <h3>第 2 周：记忆系统</h3>
+        <p>ChromaDB / Qdrant 向量存储，Mem0 记忆提取与检索，用户画像动态更新</p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num sky">W3</div>
+      <div class="step-content">
+        <h3>第 3 周：语音 + 表情</h3>
+        <p>Whisper / SenseVoice ASR，CosyVoice2 / Qwen3-TTS 语音合成，Open-LLM-VTuber Live2D 集成，实时流式对话</p>
+      </div>
+    </div>
+    <div class="roadmap-step">
+      <div class="step-num sky">W4</div>
+      <div class="step-content">
+        <h3>第 4 周：打磨上线</h3>
+        <p>情感检测增强（SoulSync 参考），主动联系机制（revive-companion 参考），公网部署（内网穿透 / 云服务器）</p>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="color:#8060b0;margin:32px 0 16px;font-weight:600;">📚 路线C：学术研究方向</h4>
+  <div class="roadmap">
+    <div class="roadmap-step">
+      <div class="step-num lavender">论</div>
+      <div class="step-content">
+        <h3>推荐论文阅读顺序</h3>
+        <p>① Potential and Pitfalls of Romantic AI Companions（系统综述入门）<br>
+        ② Predicting Human-Chatbot Relationships（实证方法论）<br>
+        ③ Why Human-AI Relationships Need Socioaffective Alignment（理论框架）<br>
+        ④ Simulating Emotional Intelligence ACL 2025（技术实现）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider">✦ ✦ ✦ ✦ ✦</div>
+
+<!-- ===== 技术趋势 ===== -->
+<section id="trends">
+  <div class="section-header">
+    <div class="section-icon gold">⚡</div>
+    <h2 class="section-title">2025-2026 技术趋势</h2>
+  </div>
+
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="icon">🔮</div>
+      <h4>全模态融合</h4>
+      <p>视觉+语音+文本+生理信号成为标配，不再是可选项</p>
+    </div>
+    <div class="trend-card">
+      <div class="icon">🔒</div>
+      <h4>离线优先</h4>
+      <p>隐私需求推动消费级 GPU 本地部署，RTX 3060 即可运行</p>
+    </div>
+    <div class="trend-card">
+      <div class="icon">📬</div>
+      <h4>主动交互</h4>
+      <p>AI 从被动响应走向主动联系——概率模型+贝叶斯推断</p>
+    </div>
+    <div class="trend-card">
+      <div class="icon">🧬</div>
+      <h4>层级记忆</h4>
+      <p>超越 RAG：知识图谱 + 策略性遗忘 + 情景→语义转化</p>
+    </div>
+    <div class="trend-card">
+      <div class="icon">🔌</div>
+      <h4>MCP 协议</h4>
+      <p>几乎所有新项目支持 MCP，统一跨平台接口</p>
+    </div>
+    <div class="trend-card">
+      <div class="icon">⚡</div>
+      <h4>语音实时化</h4>
+      <p>97ms 首包延迟，&lt;200ms 流式，人耳无感</p>
+    </div>
+    <div class="trend-card">
+      <div class="icon">🎭</div>
+      <h4>情感显式控制</h4>
+      <p>TTS 从"朗读"进化到"表演"，情感夸张度可调节</p>
+    </div>
+    <div class="trend-card">
+      <div class="icon">🎮</div>
+      <h4>游戏×伴侣融合</h4>
+      <p>Minecraft / Factorio 游戏陪伴成为新场景</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<div class="footer">
+  <p>🫂 Human-AI Companionship Guide · 最后更新 2026.07</p>
+  <p style="margin-top:4px;">资源持续更新中 · 欢迎贡献与分享</p>
+  <div class="pixel-heart">Made with ♥ for builders</div>
+</div>
+
+</main>
+
+<!-- ===== Active Nav Highlight ===== -->
+<script>
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 120;
+    if (window.scrollY >= top) current = section.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
