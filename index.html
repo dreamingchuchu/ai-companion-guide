@@ -854,7 +854,7 @@ html { scroll-behavior: smooth; }
         <th>方案</th>
         <th>架构</th>
         <th>性能</th>
-        <th>适用场景</th>
+        <th>学习资料</th>
       </tr>
     </thead>
     <tbody>
@@ -862,31 +862,31 @@ html { scroll-behavior: smooth; }
         <td><strong>🏆 Zep</strong></td>
         <td>时间知识图谱（Episode → Entity → Community 三层子图）</td>
         <td>DMR 94.8% · 延迟 ↓90%</td>
-        <td>生产级，动态演化数据</td>
+        <td><a href="https://github.com/getzep/zep" target="_blank">GitHub</a> · <a href="https://help.getzep.com" target="_blank">文档</a> · <a href="https://arxiv.org/abs/2501.13956" target="_blank">论文</a> · <a href="https://github.com/getzep/graphiti" target="_blank">Graphiti</a></td>
       </tr>
       <tr>
         <td><strong>Mem0</strong></td>
         <td>轻量级记忆提取 + 向量检索</td>
         <td>批量处理降成本 96%</td>
-        <td>嵌入式场景，快速集成</td>
+        <td><a href="https://github.com/mem0ai/mem0" target="_blank">GitHub</a> · <a href="https://docs.mem0.ai" target="_blank">文档</a> · <a href="https://arxiv.org/abs/2504.19413" target="_blank">论文</a> · <a href="https://app.mem0.ai" target="_blank">云平台</a></td>
       </tr>
       <tr>
         <td><strong>MemMachine</strong></td>
         <td>地面实况保留 + 层级压缩</td>
         <td>LongMemEvalS 93% · 减少 80% token</td>
-        <td>高精度要求场景</td>
+        <td><a href="https://github.com/MemMachine/MemMachine" target="_blank">GitHub</a> · <a href="https://arxiv.org/abs/2604.04853" target="_blank">论文</a> · <a href="https://memmachine.ai" target="_blank">官网</a> · <a href="https://dev.to/jangwook_kim_e31e7291ad98/memmachine-ground-truth-memory-for-ai-agents-4aj0" target="_blank">解读</a></td>
       </tr>
       <tr>
         <td><strong>MemGPT (Letta)</strong></td>
         <td>OS 式分层记忆（核心 → 召回 → 归档）</td>
         <td>DMR 93.4%</td>
-        <td>经典方案，自管理记忆</td>
+        <td><a href="https://github.com/letta-ai/letta" target="_blank">GitHub</a> · <a href="https://docs.letta.com" target="_blank">文档</a> · <a href="https://arxiv.org/abs/2310.08560" target="_blank">论文</a> · <a href="https://callous-0923.github.io/agent-study/chapter_16_memgpt/16_memgpt_letta.html" target="_blank">中文教程</a></td>
       </tr>
       <tr>
         <td><strong>ChromaDB + SillyTavern</strong></td>
         <td>全本地 RAG 向量检索</td>
         <td>8GB 显存可跑</td>
-        <td>隐私优先，全本地部署</td>
+        <td><a href="https://github.com/chroma-core/chroma" target="_blank">ChromaDB</a> · <a href="https://docs.trychroma.com" target="_blank">文档</a> · <a href="https://textify.ai/how-to-build-a-local-ai-girlfriend-with-long-term-memory-2025/" target="_blank">搭建教程</a> · <a href="https://github.com/HO-git/st-qdrant-memory" target="_blank">ST扩展</a></td>
       </tr>
     </tbody>
   </table>
@@ -897,6 +897,58 @@ html { scroll-behavior: smooth; }
       核心创新包括——<strong>策略性遗忘</strong>（避免上下文污染）、<strong>情景→语义转化</strong>（例如"她昨天说喜欢早上"→"用户偏好上午沟通"）、
       <strong>时间感知</strong>（知道何时发生何事）。
     </p>
+  </div>
+
+  <!-- 记忆系统学习路线 -->
+  <div style="margin-top:32px;">
+    <h4 style="color:#5090c0;margin-bottom:16px;font-weight:600;">🗺️ 记忆系统学习路线</h4>
+    <div class="roadmap">
+      <div class="roadmap-step">
+        <div class="step-num sky">1</div>
+        <div class="step-content">
+          <h3>入门：ChromaDB — 理解向量记忆</h3>
+          <p>先搞懂 RAG 基本原理：嵌入（embedding）是什么、向量数据库怎么存、怎么检索。动手搭一个能"记住"你的聊天机器人。</p>
+          <p style="margin-top:6px;">📖 <a href="https://docs.trychroma.com" target="_blank">ChromaDB 文档</a> | 🛠️ <a href="https://textify.ai/how-to-build-a-local-ai-girlfriend-with-long-term-memory-2025/" target="_blank">实操：本地AI伴侣+ChromaDB</a></p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num sky">2</div>
+        <div class="step-content">
+          <h3>集成：Mem0 — 快速给项目加记忆</h3>
+          <p>一个 <code>add()</code> 和一个 <code>search()</code> 就能让 AI 记住用户。先跑起来，再深挖原理。适合快速原型——别一开始就纠结架构。</p>
+          <p style="margin-top:6px;">📖 <a href="https://docs.mem0.ai" target="_blank">Mem0 文档</a> | 🐙 <a href="https://github.com/mem0ai/mem0" target="_blank">GitHub (60k stars)</a> | 📄 <a href="https://arxiv.org/abs/2504.19413" target="_blank">论文</a></p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num sky">3</div>
+        <div class="step-content">
+          <h3>经典：MemGPT / Letta — 记忆的"操作系统"</h3>
+          <p>理解 OS 式分层记忆：核心记忆(RAM) → 召回记忆(磁盘) → 归档记忆(冷存储)。这是整个领域的理论基础。懂了这个，其他方案的设计动机一目了然。</p>
+          <p style="margin-top:6px;">📄 <a href="https://arxiv.org/abs/2310.08560" target="_blank">奠基论文：LLMs as Operating Systems</a> | 📝 <a href="https://callous-0923.github.io/agent-study/chapter_16_memgpt/16_memgpt_letta.html" target="_blank">中文详解</a> | 📖 <a href="https://docs.letta.com" target="_blank">Letta 文档</a></p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num sky">4</div>
+        <div class="step-content">
+          <h3>进阶：MemMachine — 存原文不存摘要</h3>
+          <p>核心创新：存原始对话而不是存摘要——"先存着，用到再提取"。写极轻，读按需。对比 Mem0 的设计取舍，理解什么时候该用哪种策略。</p>
+          <p style="margin-top:6px;">📄 <a href="https://arxiv.org/abs/2604.04853" target="_blank">论文：Ground-Truth-Preserving Memory</a> | 🐙 <a href="https://github.com/MemMachine/MemMachine" target="_blank">GitHub</a> | 📝 <a href="https://dev.to/jangwook_kim_e31e7291ad98/memmachine-ground-truth-memory-for-ai-agents-4aj0" target="_blank">解读文章</a></p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num sky">5</div>
+        <div class="step-content">
+          <h3>顶点：Zep — 时间知识图谱</h3>
+          <p>最完整的方案。三层图结构（Episode→Entity→Community）+ 双时间轴 + 事实溯源。学完 Zep 意味着你对 AI 记忆系统没有知识盲区了。尤其是"关系随时间变化"的场景——人机恋核心需求。</p>
+          <p style="margin-top:6px;">📄 <a href="https://arxiv.org/abs/2501.13956" target="_blank">论文：Temporal Knowledge Graph</a> | 🐙 <a href="https://github.com/getzep/graphiti" target="_blank">Graphiti 引擎</a> | 📖 <a href="https://help.getzep.com" target="_blank">Zep 文档</a></p>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:18px 24px;background:#f0f6fa;border-radius:12px;border:1px solid #d0ddf0;">
+      <p style="font-size:13px;color:#4a6a8a;line-height:1.8;">
+        💡 <strong>建议：</strong>按 1→2→3→4→5 走。前两步偏工程（先动手），后三步偏理论（再动脑）。每学完一步问自己：<em>这个方案的核心权衡是什么？它牺牲了什么换来了什么？</em>——理解了权衡才算真懂。
+      </p>
+    </div>
   </div>
 </section>
 
